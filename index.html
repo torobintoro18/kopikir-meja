@@ -202,7 +202,7 @@ function kirimPesanan(){
     $('#utama').style.display = 'none'; $('#barBawah').style.display = 'none';
     var s = $('#selesai'); s.style.display = 'block';
     s.innerHTML = '<div class="kartu sukses"><div class="ikon">✅</div><h2>Pesanan Terkirim ke Dapur!</h2>' +
-      '<p class="hint">Nomor pesanan <b>' + id + '</b> · Meja ' + meja.nomor + '<br>Total tagihan <b>' + fmtRp(total) + '</b> — dibayar di kasir sebelum pulang. Tunjukkan nomor pesanan ini bila ditanya kasir.</p>' +
+      '<p class="hint">Nomor pesanan <b>' + id + '</b> · Meja ' + meja.nomor + ' · 🕐 ' + (function(){ var t = new Date(); function p2(n){ return ('0' + n).slice(-2); } return p2(t.getDate()) + '/' + p2(t.getMonth() + 1) + '/' + t.getFullYear() + ' ' + p2(t.getHours()) + ':' + p2(t.getMinutes()); })() + '<br>Total tagihan <b>' + fmtRp(total) + '</b> — dibayar di kasir sebelum pulang. Tunjukkan nomor pesanan ini bila ditanya kasir.</p>' +
       '<div class="kartu" style="background:#E8F5E9;box-shadow:none;border:1px solid #A5D6A7;text-align:left">💡 <b>Sering mampir?</b> Daftar akun Kopikir biar pesan berikutnya lebih cepat (plus poin &amp; promo) — ketuk Pesan Lagi lalu daftar di bagian atas, atau simpan halaman ini ke layar utama HP-mu.</div>' +
       '<button class="tombol sekunder" onclick="location.reload()">Pesan Lagi</button></div>';
   }).catch(function(e){
