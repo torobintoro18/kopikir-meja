@@ -215,9 +215,9 @@ $('#btnKirim').addEventListener('click', kirimPesanan);
 /* ---------------- mulai ---------------- */
 (function mulai(){
   if(!token){ $('#muat').innerHTML = '<b>QR tidak dikenal.</b><br><span class="hint">Halaman ini dibuka dari QR di meja gerai Kopikir. Pindai QR di mejamu, atau tanya kasir ya.</span>'; return; }
-  panggil('/rest/v1/meja?select=*&token=eq.' + encodeURIComponent(token)).then(function(rows){
+  panggil('/rest/v1/rpc/validasi_meja', { method: 'POST', body: { p_token: token } }).then(function(rows){
     if(!rows || !rows.length) throw new Error('Meja tidak ditemukan — QR mungkin sudah diganti. Tanya kasir ya.');
-    meja = rows[0];
+    meja = { nomor: rows[0].nomor };
     return panggil('/rest/v1/gerai?select=*&id=eq.1');
   }).then(function(g){
     if(g && g[0]){
